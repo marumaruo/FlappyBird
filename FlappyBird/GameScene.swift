@@ -16,12 +16,18 @@ class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
 
         //背景色設定
-        backgroundColor = UIColor(colorLiteralRed: 0.15, green: 0.75, blue: 0.9, alpha: 1)
+        backgroundColor = UIColor(colorLiteralRed: 0.15, green: 0.75, blue: 0.90, alpha: 1)
         
         //スクロールするスプライトの親ノード作成
         scrollNode = SKNode()
         addChild(scrollNode)
         
+        setupGround()
+        setupCloud()
+        setupWall()
+    }
+    
+    func setupGround(){
         
         //地面のテクスチャ作成
         let groundTexture = SKTexture(imageNamed: "ground")
@@ -34,9 +40,9 @@ class GameScene: SKScene {
         
         //スクロールアクション
         //左に1画像分スクロール
-        let moveGround = SKAction.moveByX(-groundTexture.size().width, y: 0, duration: 0.5)
+        let moveGround = SKAction.moveByX(-groundTexture.size().width, y: 0, duration: 5.0)
         //元に戻す
-        let resetGround = SKAction.moveByX(groundTexture.size().width, y: 0, duration: 0)
+        let resetGround = SKAction.moveByX(groundTexture.size().width, y: 0, duration: 0.0)
         //上の2つを繰り返す
         let repeatScrollGround = SKAction.repeatActionForever(SKAction.sequence([moveGround, resetGround]))
         
@@ -55,17 +61,29 @@ class GameScene: SKScene {
             //スプライトを追加
             scrollNode.addChild(sprite)
         }
-//        
-//        //スプライトを作成
-//        let groundSprite = SKSpriteNode(texture: groundTexture)
-//        
-//        //スプライトの位置を指定
-//        groundSprite.position = CGPoint(x: size.width / 2, y: groundTexture.size().height / 2)
-//        
-//        //シーンにスプライトを追加
-//        addChild(groundSprite)
-//        
+
     }
+    
+    func setupCloud(){
+        let cloudTexture = SKTexture(imageNamed: "cloud")
+        cloudTexture.filteringMode = SKTextureFilteringMode.Nearest
+        
+        let needCloudNumber = 2.0 + (frame.size.width / cloudTexture.size().width)
+        let moveCloud = SKAction.moveByX(-cloudTexture.size().width, y: 0, duration: 20.0)
+        let resetCloud = SKAction.moveByX(cloudTexture.size().width, y: 0, duration: 0.0)
+        
+        let repeateScrollCloud = SKAction.repeatActionForever(SKAction.sequence([moveCloud, resetCloud]))
+        
+        for var i:CGFloat = 0; i < needCloudNumber; i += 1{
+            let sprite = SKSpriteNode(texture: cloudTexture)
+            sprite.zPosition = -100
+            
+            sprite.position = CGPoint(x: i * sprite.size.width, y: size.height - cloudTexture.size().height / 2)
+            sprite.runAction(repeateScrollCloud)
+            scrollNode.addChild(sprite)
+        }
+    }
+    
     
     func setupWall() {
         //壁の画像をテクスチャに
@@ -109,6 +127,8 @@ class GameScene: SKScene {
             //下の壁を作成
             let under = SKSpriteNode(texture: wallTexture)
             under.position = CGPoint(x: 0.0, y: under_wall_y)
+            wall.addChild(under)
+
             
             //上の壁を作成
             let upper = SKSpriteNode(texture: wallTexture)
@@ -116,12 +136,15 @@ class GameScene: SKScene {
             
             wall.addChild(upper)
             wall.runAction(wallAnimation)
+            
             self.wallNode.addChild(wall)
             
         })
         
         //次の壁作成までの待ち時間のアクション
         let waitAnimation = SKAction.waitForDuration(2)
+        
+        //壁の作成->待ち->壁を繰り返す
         let repeatForeverAnimation = SKAction.repeatActionForever(SKAction.sequence(([createWallAnimation, waitAnimation])))
         
         runAction(repeatForeverAnimation)
