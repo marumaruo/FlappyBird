@@ -31,6 +31,10 @@ class ViewController: UIViewController {
         skView.presentScene(scene)
         
     }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
