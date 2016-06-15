@@ -374,9 +374,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //2つのアニメーションを順に行う
         let itemAnimation = SKAction.sequence([moveItem, removeItem])
         
-        //壁を生成するアクションを作成
+        //アイテムを生成するアクションを作成
         let createItemAnimation = SKAction.runBlock({
-            //壁関連のノードを載せるノードを作成
+            //アイテム関連のノードを載せるノードを作成
             let item = SKNode()
             item.position = CGPoint(x: self.frame.size.width + itemTexture.size().width * 2, y: 0.0)
             item.zPosition = -30.0
@@ -384,19 +384,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //画面のY軸の中央値
             let center_y = self.frame.size.height / 2
             
-            //壁のY座標をランダムにさせるときの最大値
+            //アイテムのY座標をランダムにさせるときの最大値
             let random_y_range = self.frame.size.height / 4
-//            //下の壁のY軸の下限
+//            //下のアイテムのY軸の下限
 //            let under_wall_lowest_y = UInt32(center_y - wallTexture.size().height/2 - random_y_range / 2 )
             //ランダムな整数を生成
             let random_y = arc4random_uniform(UInt32(random_y_range))
-//            //y軸の下限にランダムな値を足して下の壁のY座標を決定
+//            //y軸の下限にランダムな値を足して下のアイテムのY座標を決定
 //            let under_wall_y = CGFloat(under_wall_lowest_y + random_y)
             
 //            //キャラが通り抜ける隙間
 //            let slit_length = self.frame.size.height / 4
 //            
-//            //下の壁を作成
+//            //下のアイテムを作成
             let itemSprite = SKSpriteNode(texture: itemTexture)
             itemSprite.position = CGPoint(x: 0.0, y: CGFloat(random_y)*2)
             item.addChild(itemSprite)
@@ -409,7 +409,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             itemSprite.physicsBody?.dynamic = false
             
             
-//            //上の壁を作成
+//            //上のアイテムを作成
 //            let upper = SKSpriteNode(texture: wallTexture)
 //            upper.position = CGPoint(x: 0.0, y: under_wall_y + wallTexture.size().height + slit_length)
 //            
@@ -440,10 +440,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         })
         
         
-        //次の壁作成までの待ち時間のアクション
-        let waitAnimation = SKAction.waitForDuration(7)
+        //次のアイテム作成までの待ち時間のアクション
+        let waitAnimation = SKAction.waitForDuration(1)
         
-        //壁の作成->待ち->壁を繰り返す
+        //アイテムの作成->待ち->アイテムを繰り返す
         let repeatForeverAnimation = SKAction.repeatActionForever(SKAction.sequence([ waitAnimation, createItemAnimation ]))
         
         runAction(repeatForeverAnimation)
