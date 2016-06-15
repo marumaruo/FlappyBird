@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C74DF70B1D1141FE008B8BA7 /* Onmtp-Inspiration11-1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C74DF70A1D1141FE008B8BA7 /* Onmtp-Inspiration11-1.mp3 */; };
 		C7D1C27E1D0A808300FAF1E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D1C27D1D0A808300FAF1E6 /* AppDelegate.swift */; };
 		C7D1C2801D0A808300FAF1E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D1C27F1D0A808300FAF1E6 /* ViewController.swift */; };
 		C7D1C2831D0A808300FAF1E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7D1C2811D0A808300FAF1E6 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C74DF70A1D1141FE008B8BA7 /* Onmtp-Inspiration11-1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Onmtp-Inspiration11-1.mp3"; sourceTree = "<group>"; };
 		C7D1C27A1D0A808300FAF1E6 /* FlappyBird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlappyBird.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7D1C27D1D0A808300FAF1E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7D1C27F1D0A808300FAF1E6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				C7D1C2911D0A8B6A00FAF1E6 /* GameScene.swift */,
 				C7D1C2861D0A808300FAF1E6 /* LaunchScreen.storyboard */,
 				C7D1C2891D0A808300FAF1E6 /* Info.plist */,
+				C74DF70A1D1141FE008B8BA7 /* Onmtp-Inspiration11-1.mp3 */,
 			);
 			path = FlappyBird;
 			sourceTree = "<group>";
@@ -131,6 +134,7 @@
 			files = (
 				C7D1C2881D0A808300FAF1E6 /* LaunchScreen.storyboard in Resources */,
 				C7D1C2851D0A808300FAF1E6 /* Assets.xcassets in Resources */,
+				C74DF70B1D1141FE008B8BA7 /* Onmtp-Inspiration11-1.mp3 in Resources */,
 				C7D1C2831D0A808300FAF1E6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,6 +298,7 @@
 				C7D1C28E1D0A808300FAF1E6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

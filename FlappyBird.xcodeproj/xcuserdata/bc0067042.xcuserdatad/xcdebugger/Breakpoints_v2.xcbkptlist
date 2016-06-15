@@ -6,15 +6,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FlappyBird/GameScene.swift"
-            timestampString = "487650630.188901"
+            timestampString = "487674461.585699"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "280"
-            endingLineNumber = "280"
+            startingLineNumber = "307"
+            endingLineNumber = "307"
             landmarkName = "didBeginContact(_:)"
             landmarkType = "5">
          </BreakpointContent>
