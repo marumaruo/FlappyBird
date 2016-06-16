@@ -15,6 +15,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     var wallNode:SKNode!
     var itemNode:SKNode!
     var bird:SKSpriteNode!
+    var sePlayer:AVAudioPlayer = AVAudioPlayer()
+
     
     //衝突判定カテゴリの追加
     let birdCategory: UInt32 = 1<<0 //0...00001 この記述法って何？★
@@ -34,6 +36,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     let userDefaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     
     override func didMoveToView(view: SKView) {
+        
+        //SEのロード
+        var se = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Onmtp-Inspiration11-1", ofType: "mp3")!)
+        do {
+            sePlayer = try AVAudioPlayer(contentsOfURL:se)
+            sePlayer.prepareToPlay()
+        } catch {
+            print("error")
+        }
         
         //重力設定
         physicsWorld.gravity = CGVector(dx:0.0, dy: -4.0)
@@ -300,14 +311,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
             itemScoreLabelNode.text = "item score:\(itemScore)"
             
             //SEを鳴らす
-            do {
-                var se = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Onmtp-Inspiration11-1", ofType: "mp3")!)
-                var sePlayer:AVAudioPlayer = AVAudioPlayer()
-                sePlayer = try AVAudioPlayer(contentsOfURL:se)
-                sePlayer.play()
-            } catch {
-                print("error")
-            }
+            sePlayer.play()
+            
+//            var se = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Onmtp-Inspiration11-1", ofType: "mp3")!)
+//            do {
+//                sePlayer = try AVAudioPlayer(contentsOfURL:se)
+//                sePlayer.play()
+//            } catch {
+//                print("error")
+//            }
             
             //取ったらitemを消す
             itemNode.removeAllChildren()
@@ -427,7 +439,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
         
         
         //次のアイテム作成までの待ち時間のアクション
-        let waitAnimation = SKAction.waitForDuration(12)
+        let waitAnimation = SKAction.waitForDuration(8)
         
         //アイテムの作成->待ち->アイテムを繰り返す
         let repeatForeverAnimation = SKAction.repeatActionForever(SKAction.sequence([ waitAnimation, createItemAnimation ]))
